@@ -1,0 +1,52 @@
+{
+  "version": "fixture",
+  "dimensions": [
+    {
+      "code": "S1",
+      "name": "S1 自尊自信",
+      "model": "自我模型",
+      "tiers": {
+        "L": "低档",
+        "M": "中档",
+        "H": "高档"
+      }
+    }
+  ],
+  "questions": [
+    {
+      "id": "q1",
+      "dimension": "S1",
+      "text": "测试题",
+      "options": [
+        {
+          "label": "低",
+          "value": 1
+        },
+        {
+          "label": "中",
+          "value": 2
+        },
+        {
+          "label": "高",
+          "value": 3
+        }
+      ]
+    }
+  ],
+  "specialQuestions": [],
+  "types": [
+    {
+      "code": "CTRL",
+      "name": "拿捏者",
+      "intro": "测试 intro",
+      "description": "测试 description",
+      "category": "normal"
+    }
+  ],
+  "templates": [
+    {
+      "code": "CTRL",
+      "pattern": "H"
+    }
+  ]
+}

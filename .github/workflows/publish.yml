@@ -2,8 +2,8 @@ name: Publish Package to npm
 
 on:
   push:
-    branches:
-      - main
+    tags:
+      - 'v*' # 当以 v 开头的 tag 推送时触发（例如 v0.1.1）
 
 jobs:
   build-and-publish:

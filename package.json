@@ -1,7 +1,7 @@
 {
   "name": "@pancato/sbti-cli",
   "version": "0.1.1",
-  "description": "Dual-mode SBTI CLI for humans and AI agents.",
+  "description": "🧠 Offline-first, dual-mode SBTI personality test CLI for humans 🧑‍💻 and AI agents 🤖",
   "type": "module",
   "license": "MIT",
   "homepage": "https://github.com/pancato/sbti-cli#readme",

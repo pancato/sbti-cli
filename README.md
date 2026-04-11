@@ -1,4 +1,4 @@
-# sbti-cli
+# sbti-cli 🧠
 
 An offline-first, dual-mode SBTI CLI for humans and AI agents.
 
@@ -9,6 +9,21 @@ SBTI into an agent-friendly workflow. The project aims to support:
 - stable JSON interfaces for AI and automation
 - bundled local snapshot data for offline-first usage
 - optional upstream refresh commands when you explicitly want new data
+
+## Installation 🚀
+
+You can install `sbti-cli` globally using your favorite package manager:
+
+```bash
+# Using npm
+npm install -g @pancato/sbti-cli
+
+# Using pnpm
+pnpm add -g @pancato/sbti-cli
+
+# Using yarn
+yarn global add @pancato/sbti-cli
+```
 
 ## Status
 
@@ -48,6 +63,15 @@ Agent-friendly commands:
 - `sbti export --format json`
 - `sbti analyze-prompt --stdin`
 
+### AI Agent Integration 🤖
+
+`sbti-cli` is specifically designed to be called by AI Agents (like GPT-4, Claude, or local LLMs).
+
+1.  **JSON Output**: Always use the `--json` flag to get machine-readable output. This allows agents to parse results without regex.
+2.  **Stateless Scoring**: Use `sbti score --answers '{"q1": 1, ...}' --json` to perform calculations without managing local state.
+3.  **Heuristic Inference**: Agents can pipe user descriptions into `sbti analyze-prompt --stdin --json` to get a preliminary SBTI type inference based on text analysis.
+4.  **Reference Data**: Agents can use `sbti types --json` or `sbti show <TYPE> --json` to look up personality descriptions and characteristics to provide better context in conversations.
+
 ## Example Usage
 
 Run the interactive test:
@@ -71,7 +95,7 @@ node ./dist/bin/sbti.js show CTRL --json
 Infer from freeform text:
 
 ```bash
-printf '喜欢计划、很强控制感、总想把事情安排好' | node ./dist/bin/sbti.js analyze-prompt --stdin --json
+printf '喜欢计划、很强控制感、总想把事情安排好' | sbti analyze-prompt --stdin --json
 ```
 
 ## Development

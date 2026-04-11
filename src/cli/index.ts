@@ -7,6 +7,7 @@ import { runScoreCommand } from './commands/score';
 import { runShowCommand } from './commands/show';
 import { runTestCommand } from './commands/test';
 import { runTypesCommand } from './commands/types';
+import { runUpdateCommand } from './commands/update';
 import type { TestDoubleInteraction } from './ui/prompts';
 
 export interface CliRunResult {
@@ -29,6 +30,7 @@ function buildHelpText(): string {
   cli.command('export', 'Export normalized SBTI data');
   cli.command('score', 'Score a provided answer payload');
   cli.command('batch', 'Score multiple answer payloads from a file');
+  cli.command('update', 'Fetch and normalize upstream SBTI data');
   cli.help();
 
   let output = '';
@@ -134,6 +136,16 @@ export async function runCli(argv: string[], options: RunCliOptions = {}): Promi
 
   if (command === 'batch') {
     const result = runBatchCommand(argv.slice(1), jsonMode);
+
+    return {
+      exitCode: result.exitCode,
+      stdout: result.output,
+      stderr: result.error ?? ''
+    };
+  }
+
+  if (command === 'update') {
+    const result = await runUpdateCommand(jsonMode);
 
     return {
       exitCode: result.exitCode,

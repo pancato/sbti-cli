@@ -1,7 +1,9 @@
 import { cac } from 'cac';
 
+import { runBatchCommand } from './commands/batch';
 import { runDimensionsCommand } from './commands/dimensions';
 import { runExportCommand } from './commands/export';
+import { runScoreCommand } from './commands/score';
 import { runShowCommand } from './commands/show';
 import { runTestCommand } from './commands/test';
 import { runTypesCommand } from './commands/types';
@@ -25,6 +27,8 @@ function buildHelpText(): string {
   cli.command('show <typeCode>', 'Show a single SBTI type');
   cli.command('dimensions', 'List the 15 SBTI dimensions');
   cli.command('export', 'Export normalized SBTI data');
+  cli.command('score', 'Score a provided answer payload');
+  cli.command('batch', 'Score multiple answer payloads from a file');
   cli.help();
 
   let output = '';
@@ -110,6 +114,26 @@ export async function runCli(argv: string[], options: RunCliOptions = {}): Promi
 
   if (command === 'export') {
     const result = runExportCommand(readOptionValue(argv, '--format'));
+
+    return {
+      exitCode: result.exitCode,
+      stdout: result.output,
+      stderr: result.error ?? ''
+    };
+  }
+
+  if (command === 'score') {
+    const result = runScoreCommand(argv.slice(1), jsonMode);
+
+    return {
+      exitCode: result.exitCode,
+      stdout: result.output,
+      stderr: result.error ?? ''
+    };
+  }
+
+  if (command === 'batch') {
+    const result = runBatchCommand(argv.slice(1), jsonMode);
 
     return {
       exitCode: result.exitCode,

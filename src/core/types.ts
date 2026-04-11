@@ -52,3 +52,39 @@ export interface RuntimeSnapshot {
   types: TypeDefinition[];
   templates: TypeTemplateDefinition[];
 }
+
+export interface RankedTypeMatch extends TypeDefinition {
+  pattern: string;
+  distance: number;
+  exact: number;
+  similarity: number;
+}
+
+export interface DimensionScore {
+  code: string;
+  name: string;
+  model: string;
+  score: number;
+  level: BucketValue;
+  explanation: string;
+}
+
+export interface ScoreResult {
+  rawScores: Record<string, number>;
+  levels: Record<string, BucketValue>;
+  resultPattern: string;
+  resultVector: number[];
+  ranked: RankedTypeMatch[];
+  bestNormal: RankedTypeMatch;
+  primaryType: TypeDefinition | RankedTypeMatch;
+  secondaryType: RankedTypeMatch | null;
+  dimensions: DimensionScore[];
+  flags: {
+    drinkTriggered: boolean;
+    fallbackTriggered: boolean;
+  };
+  modeKicker: string;
+  badge: string;
+  sub: string;
+  special: boolean;
+}

@@ -26,7 +26,7 @@
     "./package.json": "./package.json"
   },
   "bin": {
-    "sbti": "./dist/bin/sbti.js"
+    "sbti": "dist/bin/sbti.js"
   },
   "keywords": [
     "sbti",

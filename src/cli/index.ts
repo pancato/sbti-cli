@@ -3,12 +3,18 @@ import { cac } from 'cac';
 import { runDimensionsCommand } from './commands/dimensions';
 import { runExportCommand } from './commands/export';
 import { runShowCommand } from './commands/show';
+import { runTestCommand } from './commands/test';
 import { runTypesCommand } from './commands/types';
+import type { TestDoubleInteraction } from './ui/prompts';
 
 export interface CliRunResult {
   exitCode: number;
   stdout: string;
   stderr: string;
+}
+
+export interface RunCliOptions {
+  interaction?: TestDoubleInteraction;
 }
 
 function buildHelpText(): string {
@@ -51,7 +57,7 @@ function readOptionValue(argv: string[], flag: string): string | undefined {
   return argv[index + 1];
 }
 
-export async function runCli(argv: string[]): Promise<CliRunResult> {
+export async function runCli(argv: string[], options: RunCliOptions = {}): Promise<CliRunResult> {
   if (argv.length === 0 || argv.includes('--help') || argv.includes('-h')) {
     return {
       exitCode: 0,
@@ -62,6 +68,19 @@ export async function runCli(argv: string[]): Promise<CliRunResult> {
 
   const command = argv[0];
   const jsonMode = hasFlag(argv, '--json');
+
+  if (command === 'test') {
+    const result = await runTestCommand({
+      jsonMode,
+      interaction: options.interaction
+    });
+
+    return {
+      exitCode: result.exitCode,
+      stdout: result.output,
+      stderr: result.error ?? ''
+    };
+  }
 
   if (command === 'types') {
     return {

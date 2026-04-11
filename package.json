@@ -19,14 +19,27 @@
     "LICENSE",
     "NOTICE"
   ],
+  "exports": {
+    ".": {
+      "import": "./dist/index.js"
+    },
+    "./package.json": "./package.json"
+  },
   "bin": {
     "sbti": "./dist/bin/sbti.js"
   },
+  "keywords": [
+    "sbti",
+    "cli",
+    "personality-test",
+    "agent-tool",
+    "typescript"
+  ],
   "engines": {
     "node": ">=20.19.0"
   },
   "scripts": {
-    "build": "vite build",
+    "build": "node scripts/build.mjs",
     "test": "vitest run",
     "test:watch": "vitest",
     "typecheck": "tsc --noEmit"

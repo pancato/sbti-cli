@@ -12,9 +12,14 @@ SBTI into an agent-friendly workflow. The project aims to support:
 
 ## Status
 
-The repository is in active development. The initial scaffold, design spec, and
-implementation plan are already committed, and the CLI foundation is now being
-built incrementally with TDD.
+The project is already usable in local development. The current implementation
+includes:
+
+- interactive `sbti test`
+- read-only reference commands such as `types`, `show`, and `dimensions`
+- machine-oriented `score`, `batch`, and `export`
+- `update` for fetching and normalizing upstream data
+- `analyze-prompt` for explicit heuristic inference
 
 ## Tech Stack
 
@@ -26,7 +31,7 @@ built incrementally with TDD.
 - `yoctocolors`
 - `zod`
 
-## Planned Command Surface
+## Command Surface
 
 Human-friendly commands:
 
@@ -42,6 +47,32 @@ Agent-friendly commands:
 - `sbti batch --input <file>`
 - `sbti export --format json`
 - `sbti analyze-prompt --stdin`
+
+## Example Usage
+
+Run the interactive test:
+
+```bash
+node ./dist/bin/sbti.js test
+```
+
+Score a JSON payload:
+
+```bash
+node ./dist/bin/sbti.js score --answers '{"q1":1,"q2":1,"q3":1,"q4":1,"q5":1,"q6":1,"q7":1,"q8":1,"q9":1,"q10":1,"q11":1,"q12":1,"q13":1,"q14":1,"q15":1,"q16":1,"q17":1,"q18":1,"q19":1,"q20":1,"q21":1,"q22":1,"q23":1,"q24":1,"q25":1,"q26":1,"q27":1,"q28":1,"q29":1,"q30":1}' --json
+```
+
+Inspect a type:
+
+```bash
+node ./dist/bin/sbti.js show CTRL --json
+```
+
+Infer from freeform text:
+
+```bash
+printf '喜欢计划、很强控制感、总想把事情安排好' | node ./dist/bin/sbti.js analyze-prompt --stdin --json
+```
 
 ## Development
 

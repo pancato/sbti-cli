@@ -1,0 +1,20 @@
+Upstream notice for SBTI-related content
+=======================================
+
+This repository's original source code and project documentation are released
+under the MIT License.
+
+However, any upstream SBTI questionnaire text, scoring data, result copy,
+artwork, extracted snapshots, or other derived content remain subject to their
+original ownership and usage terms. They are not automatically relicensed as
+MIT just because they are referenced, transformed, or bundled by this project.
+
+Primary upstream references currently include:
+
+- The original SBTI site and its authors
+- The `sbti-wiki` reference project used for understanding the SBTI structure
+- Any future normalized snapshot material derived from upstream SBTI sources
+
+This project does not claim ownership over upstream SBTI content. Before using
+bundled or derived SBTI source material for redistribution or commercial
+purposes, verify the applicable rights with the upstream owners.

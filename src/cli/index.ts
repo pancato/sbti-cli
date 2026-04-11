@@ -1,6 +1,7 @@
 import { cac } from 'cac';
 
 import { runBatchCommand } from './commands/batch';
+import { runAnalyzePromptCommand } from './commands/analyzePrompt';
 import { runDimensionsCommand } from './commands/dimensions';
 import { runExportCommand } from './commands/export';
 import { runScoreCommand } from './commands/score';
@@ -18,6 +19,7 @@ export interface CliRunResult {
 
 export interface RunCliOptions {
   interaction?: TestDoubleInteraction;
+  stdinText?: string;
 }
 
 function buildHelpText(): string {
@@ -31,6 +33,7 @@ function buildHelpText(): string {
   cli.command('score', 'Score a provided answer payload');
   cli.command('batch', 'Score multiple answer payloads from a file');
   cli.command('update', 'Fetch and normalize upstream SBTI data');
+  cli.command('analyze-prompt', 'Infer a likely SBTI result from freeform text');
   cli.help();
 
   let output = '';
@@ -146,6 +149,16 @@ export async function runCli(argv: string[], options: RunCliOptions = {}): Promi
 
   if (command === 'update') {
     const result = await runUpdateCommand(jsonMode);
+
+    return {
+      exitCode: result.exitCode,
+      stdout: result.output,
+      stderr: result.error ?? ''
+    };
+  }
+
+  if (command === 'analyze-prompt') {
+    const result = await runAnalyzePromptCommand(argv.slice(1), jsonMode, options.stdinText);
 
     return {
       exitCode: result.exitCode,

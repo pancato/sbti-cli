@@ -88,3 +88,10 @@ export interface ScoreResult {
   sub: string;
   special: boolean;
 }
+
+export interface InferenceResult extends ScoreResult {
+  mode: 'inferred';
+  confidence: number;
+  warning: string;
+  matchedKeywords: string[];
+}

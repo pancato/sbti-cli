@@ -1,0 +1,46 @@
+{
+  "name": "@pancato/sbti-cli",
+  "version": "0.1.0",
+  "description": "Dual-mode SBTI CLI for humans and AI agents.",
+  "type": "module",
+  "license": "MIT",
+  "homepage": "https://github.com/pancato/sbti-cli#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pancato/sbti-cli.git"
+  },
+  "bugs": {
+    "url": "https://github.com/pancato/sbti-cli/issues"
+  },
+  "author": "pancato",
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE",
+    "NOTICE"
+  ],
+  "bin": {
+    "sbti": "./dist/bin/sbti.js"
+  },
+  "engines": {
+    "node": ">=20.19.0"
+  },
+  "scripts": {
+    "build": "vite build",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@clack/prompts": "^0.11.0",
+    "cac": "^6.7.14",
+    "yoctocolors": "^2.1.2",
+    "zod": "^4.1.5"
+  },
+  "devDependencies": {
+    "@types/node": "^24.4.0",
+    "typescript": "^5.9.2",
+    "vite": "^7.1.4",
+    "vitest": "^3.2.4"
+  }
+}

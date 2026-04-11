@@ -1,6 +1,6 @@
 {
   "name": "@pancato/sbti-cli",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Dual-mode SBTI CLI for humans and AI agents.",
   "type": "module",
   "license": "MIT",

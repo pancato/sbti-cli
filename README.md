@@ -124,11 +124,6 @@ Build the CLI:
 npm run build
 ```
 
-## Repository Documents
-
-- Design spec: [docs/superpowers/specs/2026-04-11-sbti-cli-design.md](docs/superpowers/specs/2026-04-11-sbti-cli-design.md)
-- Implementation plan: [docs/superpowers/plans/2026-04-11-sbti-cli.md](docs/superpowers/plans/2026-04-11-sbti-cli.md)
-
 ## License
 
 This repository's original code is licensed under MIT. See [LICENSE](LICENSE).
